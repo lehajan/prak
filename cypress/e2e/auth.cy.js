@@ -1,0 +1,33 @@
+describe('autorization', () => {
+  // it('passes', () => {
+  //   cy.fixture('example').then(data => {
+  //     cy.visit('https://dev.profteam.su/login')
+  //     cy.log('ввод логина')
+  //     cy.get('.form-input--text')
+  //       .type(data.student_login)
+  //     cy.log('ввод пароля')
+  //     cy.get('.form-input--password')
+  //       .type(data.student_password)
+  //     cy.log('кнопка Войти')
+  //     cy.get('.form__buttons > :nth-child(3)')
+  //       .click()
+  //   })
+  // })
+  it('passes', () => {
+    cy.fixture('example').then(data => {
+      cy.visit('https://dev.profteam.su/login')
+      cy.log('ввод логина, которого не существует')
+      cy.get('.form-input--text')
+        .type(data.not_exist_login)
+      cy.log('ввод непрвильного пароля')
+      cy.get('.form-input--password')
+        .type(data.not_exist_password)
+      cy.log('кнопка Войти')
+      cy.get('.form__buttons > :nth-child(3)')
+        .click()
+      cy.log('Проверка на ошибку')
+      cy.get('.form-error > span')
+        .should('exist')
+    })
+  })
+})

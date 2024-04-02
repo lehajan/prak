@@ -1,0 +1,22 @@
+describe('delete application', () => {
+    it('passes', () => {
+        cy.fixture('example').then(data => {
+            cy.visit('https://dev.profteam.su/login')
+            cy.log('ввод логина')
+            cy.get('.form-input--text')
+                .type(data.val_login)
+            cy.log('ввод пароля')
+            cy.get('.form-input--password')
+                .type(data.val_password)
+            cy.log('кнопка Войти')
+            cy.get('.form__buttons > :nth-child(3)')
+                .click()
+            cy.log('Кнопка Заявки')
+            cy.get(':nth-child(3) > .menu-item__item-name')
+                .click()
+            cy.log('кнопка Удалить')
+            cy.get('.buttons > .button')
+                .click()
+        })
+    })
+})
